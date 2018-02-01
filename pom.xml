@@ -2,49 +2,38 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.github.yx</groupId>
-  <artifactId>jpa.utispringboot</artifactId>
-  <version>0.0.1</version>
+  <groupId>cn.yx</groupId>
+  <artifactId>springboot.jpa.sdk</artifactId>
+  <version>0.01</version>
   <packaging>jar</packaging>
 
-  <name>jpa.utispringboot</name>
+  <name>springboot.jpa.sdk</name>
   <url>http://maven.apache.org</url>
+  
+  <developers>
+		<developer>
+			<id>yx</id>
+			<name>yx</name>
+			<email>jlf1997@163.comt</email>
+			<organization>yx</organization>
+			<organizationUrl></organizationUrl>
+		</developer>
+	</developers>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
+ 	<properties>
+		<java.version>1.8</java.version>
+		<junit.version>4.12</junit.version>
+		<maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
+		<plugin.javadoc.version>2.10.2</plugin.javadoc.version>
+		<plugin.deploy.version>2.8.2</plugin.deploy.version>
+		<project.encoding>UTF-8</project.encoding>
+		<slf4j.version>1.7.25</slf4j.version>
+		<spring.version>5.0.0.RELEASE</spring.version>
+		<spring-boot.version>1.5.7.RELEASE</spring-boot.version>
+		<swagger.version>1.5.16</swagger.version>
+	</properties>
 
   <dependencies>
-   		<!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa -->
-		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa -->
-		<dependency>
-		    <groupId>org.springframework.boot</groupId>
-		    <artifactId>spring-boot-starter-data-jpa</artifactId>
-		    <version>1.5.9.RELEASE</version>
-		</dependency>	
-		
-		
-
   
   </dependencies>
-  
-  	<build>
-    <finalName>ShopPra1</finalName>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.6.0</version>
-        <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
-          <encoding>${project.build.sourceEncoding}</encoding>
-          <compilerArguments>
-            <verbose />
-            <bootclasspath>${java.home}/lib/rt.jar;${java.home}/lib/jce.jar</bootclasspath>
-          </compilerArguments>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
 </project>
