@@ -1,4 +1,4 @@
-package cn.yx.springboot.jpa.sdk;
+package org.springboot.sdk.test;
 
 /**
  * Hello world!
