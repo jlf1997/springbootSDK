@@ -25,8 +25,23 @@ import springfox.documentation.spring.web.json.Json;
  *
  */
 @EnableJpaAuditing
-public class FastApplication extends WebMvcConfigurerAdapter{
+public abstract class FastApplication extends WebMvcConfigurerAdapter{
 	
+	/**
+	 * 自定义gson build属性
+	 * @param build
+	 */
+	public abstract void setGsonBuilder(GsonBuilder build);
+	/**
+	 * 自定义gson
+	 * @param build
+	 * @return
+	 */
+	public abstract Gson setGson(GsonBuilder build);
+	
+	private GsonBuilder build;
+	
+	private Gson gson;
 	
 	@Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
@@ -35,26 +50,29 @@ public class FastApplication extends WebMvcConfigurerAdapter{
     }
 	
 	 private GsonHttpMessageConverter createGsonHttpMessageConverter() {
-		 GsonBuilder build = new GsonDateBuilder().getBuilder();
-		 build.registerTypeAdapter(Json.class, new JsonSerializer<Json>() {
-
-				@Override
-				public JsonElement serialize(Json src, Type typeOfSrc, JsonSerializationContext context) {
-					// TODO Auto-generated method stub
-					JsonParser jsonParser = new JsonParser();					
-					
-					return jsonParser.parse(src.value());
-				}
-				
-			});
-	        Gson gson = build
-	        		.addSerializationExclusionStrategy(new GsonExclueSerialize())
-	        		.addDeserializationExclusionStrategy(new GsonExclueDeserialize())
-	                .setDateFormat("yyyy-MM-dd HH:mm:ss")
-	                .create();
-
-	        GsonHttpMessageConverter gsonConverter = new GsonHttpMessageConverter();
-	        gsonConverter.setGson(gson);
-	        return gsonConverter;
+			 build = new GsonDateBuilder().getBuilder();
+			 build.registerTypeAdapter(Json.class, new JsonSerializer<Json>() {
+	
+					@Override
+					public JsonElement serialize(Json src, Type typeOfSrc, JsonSerializationContext context) {
+						// TODO Auto-generated method stub
+						JsonParser jsonParser = new JsonParser();										
+						return jsonParser.parse(src.value());
+					}			
+				});
+			setGsonBuilder(build);
+			gson = setGson(build);
+			if(gson==null) {
+				 gson = build
+			    		.addSerializationExclusionStrategy(new GsonExclueSerialize())
+			    		.addDeserializationExclusionStrategy(new GsonExclueDeserialize())
+			            .setDateFormat("yyyy-MM-dd HH:mm:ss")
+			            .create();
+			}
+		   
+		
+		    GsonHttpMessageConverter gsonConverter = new GsonHttpMessageConverter();
+		    gsonConverter.setGson(gson);
+		    return gsonConverter;
 	    }
 }
