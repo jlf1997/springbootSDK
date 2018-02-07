@@ -30,13 +30,17 @@
 		<slf4j.version>1.7.25</slf4j.version>
 		<spring.version>4.3.13.RELEASE</spring.version>
 		<spring-boot.version>1.5.9.RELEASE</spring-boot.version>
-		<swagger.version>1.5.16</swagger.version>	
+		<spring-swagger.version>2.2.2</spring-swagger.version>	
 	</properties>
 
 	<repositories>
 		<repository>
 			<id>guerlab</id>
 			<url>http://maven.guerlab.net/repository/public/</url>
+		</repository>
+		<repository>
+		    <id>jitpack.io</id>
+		    <url>https://jitpack.io</url>
 		</repository>
 	</repositories>
 	
@@ -233,18 +237,28 @@
 				<version>${spring-boot.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>io.swagger</groupId>
-				<artifactId>swagger-annotations</artifactId>
-				<version>${swagger.version}</version>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-data-jpa</artifactId>
+				<version>${spring-boot.version}</version>
 			</dependency>
 			<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-			<version>${spring-boot.version}</version>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-web</artifactId>
+				<version>${spring-boot.version}</version>		
+			</dependency>
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-swagger2</artifactId>	
+				<version>${spring-swagger.version}</version>		
+			</dependency>
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-swagger-ui</artifactId>
+				<version>${spring-swagger.version}</version>		
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
 	<modules>
-		<module>springboot.sdk.test</module>
+		<module>springboot.sdk.jpa</module>
 	</modules>
 </project>

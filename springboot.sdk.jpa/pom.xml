@@ -46,8 +46,28 @@
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 	</dependency>
 	<dependency>
-		<groupId>io.swagger</groupId>
-		<artifactId>swagger-annotations</artifactId>		
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-web</artifactId>
+		<exclusions>
+	        <exclusion>
+	            <groupId>com.fasterxml.jackson.core</groupId>
+	            <artifactId>jackson-databind</artifactId>
+	        </exclusion>                
+	    </exclusions>
 	</dependency>
+	<dependency>
+		<groupId>io.springfox</groupId>
+		<artifactId>springfox-swagger2</artifactId>		
+	</dependency>
+	<dependency>
+		<groupId>io.springfox</groupId>
+		<artifactId>springfox-swagger-ui</artifactId>	
+	</dependency>
+	<dependency>
+	    <groupId>com.github.jlf1997</groupId>
+	    <artifactId>fastTool</artifactId>
+	    <version>42e1cd34ce</version>
+	</dependency>
+	
   </dependencies>
 </project>

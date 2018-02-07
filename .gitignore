@@ -3,3 +3,4 @@ springboot.sdk.test/.settings/
 .settings/
 .project
 .classpath
+springboot.sdk.jpa/.factorypath
