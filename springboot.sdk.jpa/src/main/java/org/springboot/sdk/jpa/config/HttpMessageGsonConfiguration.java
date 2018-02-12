@@ -29,27 +29,12 @@ public  class HttpMessageGsonConfiguration {
 		private GsonBuilder build;
 		
 		
-		private boolean SET_DATE  = false;
 		
-		public HttpMessageGsonConfiguration(){
-			build = new GsonBuilder();
-		}
-	
-	
-		public HttpMessageGsonConfiguration registDateDeserializer(JsonDeserializer<Date> jsonDeserializer){
-			SET_DATE = true;
-			build.registerTypeAdapter(Date.class, jsonDeserializer);
-			return this;
+		
+		public HttpMessageGsonConfiguration(){			
+			 build =  GsonDateBuilder.getBuilder(build);		
 		}
 		
-		public HttpMessageGsonConfiguration registDateSerializer(JsonSerializer<Date> jsonSerializer){
-			SET_DATE = true;
-			build.registerTypeAdapter(Date.class, jsonSerializer);
-			return this;
-		}
-		
-		
-	
 		
 	 	
 	 	public GsonBuilder getBuild() {
@@ -61,9 +46,7 @@ public  class HttpMessageGsonConfiguration {
 		}
 
 		public GsonHttpMessageConverter create() {
-	 		if(!SET_DATE){
-	 			 build =  GsonDateBuilder.getBuilder(build);				
-	 		}
+	 		
 	 		
 	 		 build.registerTypeAdapter(Json.class, new JsonSerializer<Json>() {
 	 			
