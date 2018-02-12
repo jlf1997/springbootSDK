@@ -15,7 +15,6 @@ import javax.transaction.Transactional;
 
 import org.springboot.sdk.jpa.model.BaseModel;
 import org.springboot.sdk.jpa.model.TimeEntity;
-import org.springboot.sdk.jpa.oper.FastOper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;

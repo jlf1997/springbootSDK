@@ -50,12 +50,16 @@
 	<dependency>
 		<groupId>io.springfox</groupId>
 		<artifactId>springfox-swagger-ui</artifactId>	
+	</dependency>	
+	<dependency>
+		<groupId>cn.yx</groupId>
+		<artifactId>fast.gson</artifactId>	
 	</dependency>
 	<dependency>
-	    <groupId>com.github.jlf1997</groupId>
-	    <artifactId>fastTool</artifactId>
-	    <version>42e1cd34ce</version>
-	</dependency>
-	
+		<groupId>cn.yx</groupId>
+		<artifactId>base.util</artifactId>		
+	</dependency>	
   </dependencies>
+  
+ 
 </project>

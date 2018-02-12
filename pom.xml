@@ -4,7 +4,7 @@
 
   <groupId>cn.yx</groupId>
   <artifactId>springboot.sdk</artifactId>
-  <version>0.0.2</version>
+  <version>${version}</version>
   <packaging>pom</packaging>
 
   <name>springboot.jpa.sdk</name>
@@ -21,6 +21,7 @@
 	</developers>
 
  	<properties>
+ 		<version>0.0.2</version>
 		<java.version>1.8</java.version>
 		<junit.version>4.12</junit.version>
 		<maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
@@ -29,7 +30,9 @@
 		<project.encoding>UTF-8</project.encoding>
 		<slf4j.version>1.7.25</slf4j.version>
 		<spring-boot.version>1.5.10.RELEASE</spring-boot.version>
-		<spring-swagger.version>2.2.2</spring-swagger.version>	
+		<spring-swagger.version>2.2.2</spring-swagger.version>
+		<gson.version>2.2.4</gson.version>		
+		<guava.version>23.0</guava.version>	
 	</properties>
 
 	<repositories>
@@ -241,9 +244,31 @@
 				<artifactId>springfox-swagger-ui</artifactId>
 				<version>${spring-swagger.version}</version>		
 			</dependency>
+			<dependency>
+			    <groupId>com.google.code.gson</groupId>
+			    <artifactId>gson</artifactId>
+			    <version>${gson.version}</version>
+			</dependency>	
+			<dependency>
+			    <groupId>com.google.guava</groupId>
+			    <artifactId>guava</artifactId>
+			    <version>${guava.version}</version>
+			</dependency>	
+			<dependency>
+				<groupId>cn.yx</groupId>
+				<artifactId>fast.gson</artifactId>	
+				 <version>${version}</version>
+			</dependency>
+			<dependency>
+				<groupId>cn.yx</groupId>
+				<artifactId>base.util</artifactId>	
+				<version>${version}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 	<modules>
 		<module>springboot.sdk.jpa</module>
+		<module>fast.gson</module>
+		<module>base.util</module>
 	</modules>
 </project>
