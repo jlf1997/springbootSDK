@@ -31,7 +31,9 @@ public  class HttpMessageGsonConfiguration {
 		
 		private boolean SET_DATE  = false;
 		
-		
+		public HttpMessageGsonConfiguration(){
+			build = new GsonBuilder();
+		}
 	
 	
 		public HttpMessageGsonConfiguration registDateDeserializer(JsonDeserializer<Date> jsonDeserializer){
