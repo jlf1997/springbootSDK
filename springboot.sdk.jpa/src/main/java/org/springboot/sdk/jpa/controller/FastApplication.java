@@ -1,34 +1,17 @@
 package org.springboot.sdk.jpa.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.boot.autoconfigure.web.HttpMessageConverters;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+import org.springboot.sdk.jpa.config.HttpMessageGsonConfiguration;
 import org.springframework.http.converter.HttpMessageConverter;
 
-/**
- * 默认添加json转换
- * @author Administrator
- *
- */
+public class FastApplication extends AbstractFastApplication{
 
-@EnableJpaAuditing
-@Configuration
-public abstract class FastApplication {
-	
-	
-	protected List<HttpMessageConverter<?>> additionalConverters;
-	
-	public abstract void addConverters(List<HttpMessageConverter<?>> additionalConverters);
-	
-	@Bean
-    public HttpMessageConverters customConverters() {
-		additionalConverters = new ArrayList<>();
-		addConverters(additionalConverters);
-        return new HttpMessageConverters(additionalConverters);
-    }
-	
+	@Override
+	public void addConverters(List<HttpMessageConverter<?>> additionalConverters) {
+		
+		HttpMessageGsonConfiguration gsonConfig = new HttpMessageGsonConfiguration();
+		additionalConverters.add(gsonConfig.create());
+	}
+
 }

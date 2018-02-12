@@ -10,12 +10,16 @@ import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
+import com.google.gson.JsonParser;
+import com.google.gson.JsonSerializationContext;
+import com.google.gson.JsonSerializer;
 
 public class GsonDateBuilder {
 	
-	public GsonBuilder getBuilder() {
-		
-		GsonBuilder builder = new GsonBuilder();
+	public static GsonBuilder getBuilder(GsonBuilder builder) {
+		if(builder==null){
+			builder = new GsonBuilder();
+		}		 
 		builder.registerTypeAdapter(Date.class, new JsonDeserializer<Date>() {
 
 			@Override
@@ -38,7 +42,19 @@ public class GsonDateBuilder {
 				return date;
 			}
 		});
+		builder.registerTypeAdapter(Date.class, new JsonSerializer<Date>() {
+
+			@Override
+			public JsonElement serialize(Date src, Type typeOfSrc,
+					JsonSerializationContext context) {
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");				
+				return new JsonParser().parse(sdf.format(src));
+			}
+			
+			
+		});
 		return builder;
 	}
+	
 	
 }

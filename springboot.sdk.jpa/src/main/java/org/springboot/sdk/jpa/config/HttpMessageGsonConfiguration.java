@@ -1,6 +1,7 @@
 package org.springboot.sdk.jpa.config;
 
 import java.lang.reflect.Type;
+import java.util.Date;
 
 import org.fast.gson.annotation.GsonExclueDeserialize;
 import org.fast.gson.annotation.GsonExclueSerialize;
@@ -11,6 +12,7 @@ import springfox.documentation.spring.web.json.Json;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSerializationContext;
@@ -25,55 +27,56 @@ public  class HttpMessageGsonConfiguration {
 	
 	
 		private GsonBuilder build;
+		
+		
+		private boolean SET_DATE  = false;
+		
+		
 	
-		private Gson gson;
-		
-		
-		/**
-		 * 自定义gson build属性
-		 * @param build
-		 */
-		public  void setGsonBuilder(GsonBuilder build){
-			this.build = build;
+	
+		public HttpMessageGsonConfiguration registDateDeserializer(JsonDeserializer<Date> jsonDeserializer){
+			SET_DATE = true;
+			build.registerTypeAdapter(Date.class, jsonDeserializer);
+			return this;
 		}
-		/**
-		 * 自定义gson
-		 * @param build
-		 * @return
-		 */
-		public  void setGson(Gson gson){
-			this.gson = gson;
+		
+		public HttpMessageGsonConfiguration registDateSerializer(JsonSerializer<Date> jsonSerializer){
+			SET_DATE = true;
+			build.registerTypeAdapter(Date.class, jsonSerializer);
+			return this;
 		}
 		
 		
-		public GsonBuilder getGsonBuilder(){
-			return build;
-		}
-		
-		public Gson getGson(){
-			return gson;
-		}
+	
 		
 	 	
-	 	public GsonHttpMessageConverter createGsonHttpMessageConverter() {
-	 		if(build==null){
-	 			 build = new GsonDateBuilder().getBuilder();
-				 build.registerTypeAdapter(Json.class, new JsonSerializer<Json>() {
+	 	public GsonBuilder getBuild() {
+			return build;
+		}
+
+		public void setBuild(GsonBuilder build) {
+			this.build = build;
+		}
+
+		public GsonHttpMessageConverter create() {
+	 		if(!SET_DATE){
+	 			 build =  GsonDateBuilder.getBuilder(build);				
+	 		}
+	 		
+	 		 build.registerTypeAdapter(Json.class, new JsonSerializer<Json>() {
+	 			
+					@Override
+					public JsonElement serialize(Json src, Type typeOfSrc, JsonSerializationContext context) {
+						JsonParser jsonParser = new JsonParser();										
+						return jsonParser.parse(src.value());
+					}			
+				});
+	 		 build
+	    		.addSerializationExclusionStrategy(new GsonExclueSerialize())
+	    		.addDeserializationExclusionStrategy(new GsonExclueDeserialize());
 		
-						@Override
-						public JsonElement serialize(Json src, Type typeOfSrc, JsonSerializationContext context) {
-							JsonParser jsonParser = new JsonParser();										
-							return jsonParser.parse(src.value());
-						}			
-					});
-	 		}		
-			if(gson==null) {
-				 gson = build
-			    		.addSerializationExclusionStrategy(new GsonExclueSerialize())
-			    		.addDeserializationExclusionStrategy(new GsonExclueDeserialize())
-//			            .setDateFormat("yyyy-MM-dd HH:mm:ss")
-			            .create();
-			}
+	 		Gson gson =  build.create();
+			
 		   
 		
 		    GsonHttpMessageConverter gsonConverter = new GsonHttpMessageConverter();
