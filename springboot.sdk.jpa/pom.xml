@@ -43,14 +43,7 @@
 	        </exclusion>                
 	    </exclusions>
 	</dependency>
-	<dependency>
-		<groupId>io.springfox</groupId>
-		<artifactId>springfox-swagger2</artifactId>		
-	</dependency>
-	<dependency>
-		<groupId>io.springfox</groupId>
-		<artifactId>springfox-swagger-ui</artifactId>	
-	</dependency>	
+		
 	<dependency>
 		<groupId>cn.yx</groupId>
 		<artifactId>fast.gson</artifactId>	
@@ -58,7 +51,21 @@
 	<dependency>
 		<groupId>cn.yx</groupId>
 		<artifactId>base.util</artifactId>		
+	</dependency>
+	<dependency>
+	<groupId>io.springfox</groupId>
+		<artifactId>springfox-swagger2</artifactId>		
 	</dependency>	
+	<dependency>
+		<groupId>io.springfox</groupId>
+		<artifactId>springfox-swagger-ui</artifactId>	
+	</dependency>
+
+	<dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+     </dependency>	
   </dependencies>
   
  

@@ -1,22 +1,20 @@
 package org.springboot.sdk.jpa.config;
 
 import java.lang.reflect.Type;
-import java.util.Date;
 
 import org.fast.gson.annotation.GsonExclueDeserialize;
 import org.fast.gson.annotation.GsonExclueSerialize;
 import org.fast.gson.builder.GsonDateBuilder;
 import org.springframework.http.converter.json.GsonHttpMessageConverter;
 
-import springfox.documentation.spring.web.json.Json;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
+
+import springfox.documentation.spring.web.json.Json;
 
 /**
  * 配置使用gson解析web
