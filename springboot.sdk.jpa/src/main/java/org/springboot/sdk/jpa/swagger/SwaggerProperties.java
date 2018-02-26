@@ -2,7 +2,14 @@ package org.springboot.sdk.jpa.swagger;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import springfox.documentation.swagger.web.DocExpansion;
+import springfox.documentation.swagger.web.ModelRendering;
+import springfox.documentation.swagger.web.OperationsSorter;
+import springfox.documentation.swagger.web.TagsSorter;
+
 import org.springframework.boot.context.properties.ConfigurationProperties;
+
+
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -22,7 +29,7 @@ public class SwaggerProperties {
     private Boolean enabled;
 
     /**标题**/
-    private String title = "";
+    private String title = "test";
     /**描述**/
     private String description = "";
     /**版本**/
@@ -184,9 +191,11 @@ public class SwaggerProperties {
     public static class UiConfig {
 
         private String validatorUrl;
-        private String docExpansion = "none";    // none | list
+        private DocExpansion docExpansion = DocExpansion.NONE;    // none | list
+//        private String docExpansion = "none";
         private String apiSorter = "alpha";       // alpha
-        private String defaultModelRendering = "schema";   // schema
+        private ModelRendering defaultModelRendering = ModelRendering.MODEL;   // schema
+//        private String defaultModelRendering = "schema";
 
         /** 是否启用json编辑器 **/
         private Boolean jsonEditor = false;
@@ -196,7 +205,39 @@ public class SwaggerProperties {
         private String submitMethods = "get,post,put,delete,patch";
         /** 请求超时时间 **/
         private Long requestTimeout = 10000L;
-
+        
+        /**是否启用 deep link **/               
+        private Boolean deepLinking = false;
+        /**Controls the display of operationId in operations list. The default is false **/
+        private Boolean displayOperationId = false ;
+        /** The default expansion depth for models (set to -1 completely hide the models)**/
+        private Integer defaultModelsExpandDepth = 1;
+        /** The default expansion depth for the model on the model-example section **/
+        private Integer defaultModelExpandDepth = 1;
+        /** Controls the display of the request duration (in milliseconds) for Try-It-Out requests**/
+        private Boolean displayRequestDuration = false;
+        /**  If set, enables filtering. The top bar will show an edit box that you can use to
+   *                                 filter the tagged operations that are shown. Can be Boolean to enable or disable,
+   *                                 or a string, in which case filtering will be enabled using that string as the
+   *                                 filter expression. Filtering is case sensitive matching the filter expression
+   *                                 anywhere inside the tag**/
+        private Object filter = false;
+        /** If set, limits the number of tagged operations displayed to at most this many. The
+   *                                 default is to show all operations**/
+        private Integer maxDisplayedTags;
+        /**Apply a sort to the operation list of each API. It can be 'alpha' (sort by paths
+   *                                 alphanumerically), 'method' (sort by HTTP method) or a function (see
+   *                                 Array.prototype.sort() to know how sort function works). Default is the order
+   *                                 returned by the server unchanged **/
+        private OperationsSorter operationsSorter;
+        /** Controls the display of vendor extension (x-) fields and values for Operations,
+   *                                 Parameters, and Schema **/
+        private Boolean showExtensions;
+        /**Apply a sort to the tag list of each API. It can be 'alpha' (sort by paths
+   *                                 alphanumerically) or a function (see Array.prototype.sort() to learn how to write a
+   *                                 sort function). Two tag name strings are passed to the sorter for each pass.
+   *                                 Default is the order determined by Swagger-UI **/
+        private TagsSorter tagsSorter;
     }
 
 }

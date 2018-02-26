@@ -14,7 +14,7 @@ public class HttpConvertConfiguration {
 	
 	@Bean
     @ConditionalOnMissingBean
-    public HttpConvertProperties swaggerProperties() {
+    public HttpConvertProperties httpConvertProperties() {
         return new HttpConvertProperties();
     }
 	
