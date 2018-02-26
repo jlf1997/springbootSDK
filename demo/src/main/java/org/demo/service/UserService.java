@@ -41,9 +41,13 @@ public class UserService extends FindBase<User, Long>{
 	}
 
 	@Override
-	public void where(User arg0, List<Predicate> arg1, Root<User> arg2, CriteriaQuery<?> arg3, CriteriaBuilder arg4) {
+	public void where(User user, List<Predicate> predicates, Root<User> root, CriteriaQuery<?> arg3, CriteriaBuilder cb) {
 		// TODO Auto-generated method stub
-		
+		if(user!=null) {
+			if(user.id!=null) {
+				predicates.add(cb.equal(root.get("id"),  user.id));
+			}
+		}
 	}
 
 }

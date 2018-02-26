@@ -132,7 +132,7 @@ public abstract class FindBase<T extends BaseModel,ID extends Serializable>  imp
 	@Override
 	public T findOne(ID id) {
 		T t =  jpa().findOne(id);
-		if(t!=null && 1!=t.getDeleted()) {
+ 		if(t!=null && (t.getDeleted()==null  || 1!=t.getDeleted()) ) {
 			setSelect(t);
 			return t;
 		}else {
@@ -169,6 +169,8 @@ public abstract class FindBase<T extends BaseModel,ID extends Serializable>  imp
 	
 		return jpa().save(list);
 	}
+	
+	
 	
 	
 	

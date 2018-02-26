@@ -13,6 +13,8 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import io.swagger.annotations.ApiModelProperty;
+
 
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
@@ -27,6 +29,7 @@ public class BaseModel {
 	 * 综合状态码
 	 */
 	@Column(nullable=true)
+	@ApiModelProperty(value = "综合状态码", example = "2")
 	protected Long cstate;
 	
 	/**
@@ -34,26 +37,32 @@ public class BaseModel {
 	 */
 	@CreatedDate	
 	@Column(updatable=false)
+	@ApiModelProperty(value = "创建时间", example = "2014-01-01 14:22:13")
 	protected Date creTime;
 	
 	/**
 	 * 最后更新时间
 	 */
 	@LastModifiedDate
+	@ApiModelProperty(value = "最后更新时间", example = "2014-01-01 14:22:13")
 	protected Date  updTime;
 	
 	/**
 	 * 是否删除
 	 */
+	@ApiModelProperty(value = "是否删除", example = "1")
 	protected Integer deleted  ;
 	
 	@CreatedBy
+	@ApiModelProperty(value = "创建人id", example = "1")
 	protected Long createBy;
 	
 	@LastModifiedBy
+	@ApiModelProperty(value = "修改人id", example = "1")
 	protected Long modifiedBy;
 	
 	@Version
+	@ApiModelProperty(value = "数据库记录版本号，乐观锁", example = "1")
 	protected Long version;
 
 

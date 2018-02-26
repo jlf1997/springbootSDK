@@ -29,15 +29,15 @@ public class SwaggerProperties {
     private Boolean enabled;
 
     /**标题**/
-    private String title = "test";
+    private String title = "api 文档 ";
     /**描述**/
     private String description = "";
     /**版本**/
     private String version = "";
     /**许可证**/
-    private String license = "";
+    private String license = "Apache 2.0";
     /**许可证URL**/
-    private String licenseUrl = "";
+    private String licenseUrl = "http://www.apache.org/licenses/LICENSE-2.0.html";
     /**服务条款URL**/
     private String termsOfServiceUrl = "";
 
